@@ -37,7 +37,7 @@ st.markdown('<div class="top-border"> Bankruptcy Prediction App </div>', unsafe_
 st.title(" Bankruptcy Prevention")
 
 # Display the image at the top with a fixed height and width (rectangular shape)
-st.image("https://www.durrettebradshaw.com/wp-content/uploads/2018/08/Bankruptcy.jpg", width=800)
+st.image("https://www.durrettebradshaw.com/wp-content/uploads/2018/08/Bankruptcy.jpg", use_container_width = True, width=800)
 
 st.write("This application explores the Bankruptcy Dataset And Uses Machine Learning Models for Prediction.")
 
@@ -262,7 +262,7 @@ st.sidebar.header("Make Predictions")
 if st.session_state.get('model') is not None and st.session_state.get('features') is not None:
      user_input = []
      for feature in st.session_state['features']:
-          value = st.sidebar.number_input(f"Enter value for {feature}", value=0.0, step=0.1, format="%.1f", min_value=0.0, max_value=1.0)
+          value = st.sidebar.number_input(f"Enter value for {feature}", value=0.0, step=0.1, format="%.1f")
           user_input.append(value)
 
      user_input = np.array(user_input).reshape(1, -1)
@@ -273,7 +273,7 @@ if st.session_state.get('model') is not None and st.session_state.get('features'
           result_prob = prediction_proba[prediction[0]]  # Extract probability of predicted class
           st.sidebar.write("Prediction Result:", "Bankruptcy" if prediction[0] == 1 else "No Bankruptcy")
           st.sidebar.write("Prediction Probability:", f"{result_prob:.2f}")
-
+     
 # Model Comparison
      if st.checkbox("Compare Models"):
           if st.session_state['model_performance']:
@@ -314,28 +314,3 @@ if st.session_state.get('model') is not None and st.session_state.get('features'
                st.subheader("ROC AUC Scores")
                for model, score in roc_scores.items():
                     st.write(f"{model}: {score}")
-
-    
-
-
-    
-
-          
-
-
-
-
-
-
-                
-
-                
-
-                    
-                
-
-
-
-
-
-
